@@ -158,7 +158,7 @@ margin: 20px auto;
                 <img src="mon_edit.png" alt="Foto Raymond">
             </div>
             <p style="font-size: 0.8rem; color: white;">Kami mengundang Anda untuk hadir dalam acara khitan putra kami.</p>
-            <button class="btn" onclick="showDetail()">BUKA UNDANGAN</button>
+            <button class="btn" onclick="openInvitation()">BUKA UNDANGAN</button>
         </div>
 
         <div id="page-detail" class="page">
@@ -222,6 +222,16 @@ margin: 20px auto;
     <source src="Hanana.mpeg" type="audio/mpeg">
 </audio>
 <script>
+	function openInvitation() {
+    // ✅ MUSIK WAJIB DI SINI (gesture user)
+    const music = document.getElementById("bgMusic");
+    music.muted = false;
+    music.volume = 1;
+    music.play().catch(()=>{});
+
+    // tampilkan halaman
+    showDetail();
+}
     function showDetail() {
     document.getElementById('page-front').style.opacity = "0";
     document.getElementById('page-front').style.pointerEvents = "none";
@@ -264,14 +274,32 @@ margin: 20px auto;
     }, 1000);
 
 function autoScrollDetail() {
+    const detail = document.getElementById("page-detail");
     const target = document.getElementById("scrollTarget");
 
+    // tahap 1: scroll ke konten
     target.scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
+
+    // tahap 2: lanjut scroll ke bawah (khusus HP)
+    setTimeout(() => {
+        let step = 1;
+        let interval = setInterval(() => {
+            detail.scrollTop += step;
+
+            if (
+                detail.scrollTop + detail.clientHeight >=
+                detail.scrollHeight - 5
+            ) {
+                clearInterval(interval);
+            }
+        }, 20);
+    }, 1200); // tunggu scroll pertama selesai
 }
 </script>
 
 </body>
+
 </html>
