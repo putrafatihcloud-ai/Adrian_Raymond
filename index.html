@@ -225,10 +225,14 @@ margin: 20px auto;
 	function openInvitation() {
     // ✅ MUSIK WAJIB DI SINI (gesture user)
     const music = document.getElementById("bgMusic");
-    music.muted = false;
-    music.volume = 1;
-    music.play().catch(()=>{});
+   music.load();
 
+    // 🔥 play HARUS langsung setelah klik
+    music.play().then(() => {
+        console.log("Music started");
+    }).catch(err => {
+        console.log("Music blocked:", err);
+    });
     // tampilkan halaman
     showDetail();
 }
@@ -303,5 +307,6 @@ function autoScrollDetail() {
 </body>
 
 </html>
+
 
 
