@@ -217,48 +217,62 @@ margin: 20px auto;
 		<p class="text-undangan" style="font-size: 0.75rem;">
 		Lani Kusuma & Keluarga </p></h5>
                     </div>
+<button id="scrollBtn"
+style="
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 99;
+padding: 8px 16px;
+border-radius: 20px;
+border: none;
+background: rgba(212,175,55,0.9);
+color: #5a0a0a;
+font-weight: bold;
+">
+⬇️ Geser ke bawah
+</button>
+
     </div>
 <audio id="bgMusic" loop playsinline>
     <source src="Hanana.mpeg" type="audio/mpeg">
 </audio>
 <script>
 function openInvitation() {
-    // 🔊 MUSIK HARUS LANGSUNG DI KLIK USER
     const music = document.getElementById("bgMusic");
     music.play().catch(()=>{});
 
-    // tampilkan halaman detail
     document.getElementById("page-front").style.opacity = "0";
     document.getElementById("page-front").style.pointerEvents = "none";
 
     const detail = document.getElementById("page-detail");
     detail.style.opacity = "1";
     detail.style.pointerEvents = "auto";
-
-    // auto scroll SETELAH layout siap
-    setTimeout(autoScrollDetail, 1200);
 }
-
-/* AUTO SCROLL – STABIL DI HP & DESKTOP */
-function autoScrollDetail() {
+</script>
+<script>
+document.getElementById("scrollBtn").addEventListener("click", () => {
     const detail = document.getElementById("page-detail");
 
-    const maxScroll = detail.scrollHeight - detail.clientHeight;
-    let pos = 0;
+    let pos = detail.scrollTop;
+    const max = detail.scrollHeight - detail.clientHeight;
 
     const interval = setInterval(() => {
         pos += 2;
         detail.scrollTop = pos;
 
-        if (pos >= maxScroll) {
+        if (pos >= max) {
             clearInterval(interval);
         }
-    }, 16);
-}
+    }, 16); // ~60fps
+});
 </script>
-</body>
-</html>
 
+
+</body>
+
+</html>
 
 
 
