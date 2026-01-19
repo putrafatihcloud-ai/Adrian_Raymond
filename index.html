@@ -223,14 +223,11 @@ margin: 20px auto;
 </audio>
 <script>
 function openInvitation() {
-    // 🔊 musik HARUS di klik user
+    // 🔊 MUSIK HARUS LANGSUNG DI KLIK USER
     const music = document.getElementById("bgMusic");
-    music.play().catch(() => {});
+    music.play().catch(()=>{});
 
-    showDetail();
-}
-
-function showDetail() {
+    // tampilkan halaman detail
     document.getElementById("page-front").style.opacity = "0";
     document.getElementById("page-front").style.pointerEvents = "none";
 
@@ -238,47 +235,30 @@ function showDetail() {
     detail.style.opacity = "1";
     detail.style.pointerEvents = "auto";
 
-    // auto scroll setelah animasi
-    setTimeout(autoScrollDetail, 800);
+    // auto scroll SETELAH layout siap
+    setTimeout(autoScrollDetail, 1200);
 }
 
-/* COUNTDOWN */
-const eventDate = new Date("February 07, 2026 10:00:00").getTime();
-setInterval(() => {
-    const now = new Date().getTime();
-    const diff = eventDate - now;
-
-    if (diff < 0) {
-        document.getElementById("countdown").innerHTML = "Acara Dimulai";
-        return;
-    }
-
-    const d = Math.floor(diff / (1000*60*60*24));
-    const h = Math.floor((diff / (1000*60*60)) % 24);
-    const m = Math.floor((diff / (1000*60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("countdown").innerHTML =
-        `${d} Hari : ${h} Jam : ${m} Menit : ${s} Detik`;
-}, 1000);
-
-/* AUTO SCROLL */
+/* AUTO SCROLL – STABIL DI HP & DESKTOP */
 function autoScrollDetail() {
     const detail = document.getElementById("page-detail");
 
-    const interval = setInterval(() => {
-        detail.scrollTop += 2;
+    const maxScroll = detail.scrollHeight - detail.clientHeight;
+    let pos = 0;
 
-        if (detail.scrollTop + detail.clientHeight >= detail.scrollHeight - 2) {
+    const interval = setInterval(() => {
+        pos += 2;
+        detail.scrollTop = pos;
+
+        if (pos >= maxScroll) {
             clearInterval(interval);
         }
     }, 16);
 }
 </script>
-
 </body>
-
 </html>
+
 
 
 
