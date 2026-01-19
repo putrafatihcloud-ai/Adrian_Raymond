@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!-- WHATSAPP / SOSIAL MEDIA PREVIEW -->
+<meta property="og:title" content="Undangan Khitan Adrian Raymond Hutabalian">
+<meta property="og:description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara tasyakuran khitan putra kami.">
+<meta property="og:image" content="https://adrian-raymond.netlify.app/preview.jpeg">
+<meta property="og:url" content="https://adrian-raymond.netlify.app">
+<meta property="og:type" content="website">
+
+<!-- Optional (biar lebih stabil di WA) -->
+<meta name="twitter:card" content="summary_large_image">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Khitan Raymond</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: auto;
+            background-color: #300000;
+            font-family: 'Montserrat', sans-serif;
+            overflow-y: auto;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 450px;
+            height: 100vh;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.3);
+            overflow: visible;
+        }
+
+        /* Halaman Umum */
+        .page {
+            position: absolute;
+            top: 70;
+            left: 0;
+            width: 100%;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: center;
+            padding: 60px;
+            box-sizing: border-box;
+            transition: opacity 0.8s ease-in-out;transform 0.8s ease; /* Efek transisi halus */
+            background-size: cover;
+            background-position: center;
+	    overflow-y: auto;
+        }
+.page.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+}
+
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+        /* BACKGROUND HALAMAN DEPAN */
+        #page-front {
+            background-image: linear-gradient(rgba(48, 0, 0, 0.4), rgba(48, 0, 0, 0.4)), url('depan.jpeg');
+            z-index: 5;
+            opacity: 1;
+        }
+
+        /* BACKGROUND HALAMAN DETAIL */
+        #page-detail {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('detail.jpeg');
+            z-index: 0;
+            opacity: 0;
+            pointer-events: none;
+	    justify-content: center;
+            align-items: center;
+		min-height: 100vh;
+    overflow-y: auto;      /* ✅ scroll hanya di detail */
+    padding: 80px 20px;
+    box-sizing: border-box;
+
+        }
+#page-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;   /* cover tetap 1 layar */
+}
+        .label { font-size: 1.3rem; letter-spacing: 3px; color: #f4e4bc; text-transform: uppercase; }
+        .nama-anak { font-family: 'Great Vibes', cursive; font-size: 2 rem; color: #d4af37; margin: 10px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        
+        .foto-box {
+            width: 180px;
+            height: 230px;
+            margin: 20px 0;
+            border: 3px solid #d4af37;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+margin: 20px auto;
+
+        }
+        .foto-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .btn {
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #d4af37, #f4e4bc);
+            color: #5a0a0a;
+            border: none;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .card-detail {
+            border: none;
+            padding: 25px;
+            border-radius: 15px;
+            width: 100%;
+            box-shadow: none;
+            backdrop-filter: blur(1px);
+            color: white;
+
+        }
+
+        .tgl { font-size: 1.2rem; font-weight: bold; color: #f4e4bc; margin: 10px 0; }
+        #countdown { color: #ffd700; font-weight: bold; margin: 15px 0; font-size: 0.9rem; }
+        
+        .btn-small {
+            display: inline-block;
+            padding: 8px 15px;
+            border: 4px solid #d4af37;
+            color: #f4e4bc;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            margin: 5px;
+            background: rgba(212, 175, 55, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div id="page-front" class="page">
+            <div class="label">Undangan Khitan</div>
+            <h1 class="nama-anak">Adrian Raymond Hutabalian</h1>
+            <div class="foto-box">
+                <img src="mon_edit.png" alt="Foto Raymond">
+            </div>
+            <p style="font-size: 0.8rem; color: white;">Kami mengundang Anda untuk hadir dalam acara khitan putra kami.</p>
+            <button class="btn" onclick="showDetail()">BUKA UNDANGAN</button>
+        </div>
+
+        <div id="page-detail" class="page">
+            <div class="card-detail" id="scrollTarget">
+                <div style="width: 100%;">
+                <h2 class="label">Tasyakuran Khitan</h2>
+                <p class="text-undangan" style="font-size: 0.75rem; margin-top: 70px;">
+                   <h5> Alhamdulillah, puji syukur kami haturkan kepada Allah subhanahu wata'ala yang senantiasa melimpahkan nikmat dan kesehatan bagi kita semua.<br>
+                  Dengan memohon rahmat dan ridho Allah SWT, kami sekeluarga mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara tasyakuran khitanan putra kami.</h5>
+                </p>
+                
+                <h1 class="nama-anak" style="font-size: 2.2rem;">Adrian Raymond Hutabalian</h1>
+                
+                <div class="foto-box">
+                    <img src="WA.jpeg" alt="Foto Adrian Raymond">
+                </div>
+                 <p class="text-undangan" style="font-size: 0.75rem;">
+                   <h5> 
+		   Insya Allah akan dilaksanakan pada:<br>
+		   Hari / Tanggal :
+                  Sabtu, 07 Februari 2026.<br>
+		  Waktu :
+		  10:00 WIB – 20:00 WIB<br>
+                   Tempat :
+			Jalan Suka Karya 1,
+		        Perumahan Pamulang Asri Tahap II Blok O No. 12, RT 05 RW 09 Serua Indah,
+		        Ciputat, Tangerang Selatan
+                </h5>
+                </p>                         
+                <div id="countdown"></div>
+		<p class="text-undangan" style="font-size: 0.75rem;">
+		<h5>📅 Simpan Jadwal Acara
+		</p>
+		<p class="text-undangan" style="font-size: 0.75rem;">
+		Sabtu, 07 Februari 2026
+                </p>
+		<p class="text-undangan" style="font-size: 0.75rem;">
+		⏰ 10:00 WIB – 20:00 WIB
+                 </h5>
+		</p>
+                <a class="btn-small" target="_blank" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Khitan+Raymond&dates=20260310T020000Z/20260310T070000Z">+ Kalender</a>
+                <a class="btn-small" target="_blank" href="https://maps.app.goo.gl/qRstSjh61L4mVY9RA">Buka Lokasi</a>
+            </div>
+		<p class="text-undangan" style="font-size: 0.75rem;">		
+		<h5> Doa & Penutup</p>
+		<p class="text-undangan" style="font-size: 0.75rem;">
+		Semoga Allah SWT memberikan kesehatan, keselamatan, serta menjadikan putra kami anak yang sholeh, berbakti kepada orang tua, berguna bagi agama, bangsa, dan negara.
+
+		Aamiin Ya Rabbal ‘Alamin.</p>
+		<p class="text-undangan" style="font-size: 0.75rem;">
+		Kehadiran dan doa restu Bapak/Ibu sangat kami harapkan.
+
+		Wassalamualaikum Wr. Wb.
+
+		Kami yang berbahagia.</p>
+		<p class="text-undangan" style="font-size: 0.75rem;">
+		Lani Kusuma & Keluarga </p></h5>
+                    </div>
+    </div>
+<audio id="bgMusic" preload="auto" loop>
+    <source src="Hanana.mpeg" type="audio/mpeg">
+</audio>
+<script>
+    function showDetail() {
+    document.getElementById('page-front').style.opacity = "0";
+    document.getElementById('page-front').style.pointerEvents = "none";
+
+    const detail = document.getElementById('page-detail');
+    detail.style.opacity = "1";
+    detail.style.pointerEvents = "auto";
+
+    // musik
+    const music = document.getElementById("bgMusic");
+    music.play().catch(()=>{});
+
+    // AUTO SCROLL SETELAH TRANSISI
+    setTimeout(() => {
+        autoScrollDetail();
+    }, 800); // tunggu animasi selesai
+}
+
+    function showFront() {
+        document.getElementById('page-front').style.opacity = "1";
+        document.getElementById('page-front').style.pointerEvents = "auto";
+        document.getElementById('page-detail').style.opacity = "0";
+        document.getElementById('page-detail').style.pointerEvents = "none";
+    }
+
+    /* COUNTDOWN LOGIC */
+    const eventDate = new Date("February 07, 2026 10:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const diff = eventDate - now;
+        if (diff < 0) {
+            document.getElementById("countdown").innerHTML = "Acara Dimulai";
+            return;
+        }
+        const d = Math.floor(diff / (1000*60*60*24));
+        const h = Math.floor((diff / (1000*60*60)) % 24);
+        const m = Math.floor((diff / (1000*60)) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+        document.getElementById("countdown").innerHTML = `${d} Hari : ${h} Jam : ${m} Menit : ${s} Detik`;
+    }, 1000);
+
+function autoScrollDetail() {
+    const target = document.getElementById("scrollTarget");
+
+    target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+</script>
+
+</body>
+</html>
