@@ -278,35 +278,23 @@ margin: 20px auto;
     }, 1000);
 
 function autoScrollDetail() {
+   function autoScrollDetail() {
     const detail = document.getElementById("page-detail");
-    const target = document.getElementById("scrollTarget");
 
-    // tahap 1: scroll ke konten
-    target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    const interval = setInterval(() => {
+        detail.scrollTop += 3;
 
-    // tahap 2: lanjut scroll ke bawah (khusus HP)
-    setTimeout(() => {
-        let step = 1;
-        let interval = setInterval(() => {
-            detail.scrollTop += step;
-
-            if (
-                detail.scrollTop + detail.clientHeight >=
-                detail.scrollHeight - 5
-            ) {
-                clearInterval(interval);
-            }
-        }, 20);
-    }, 200); // tunggu scroll pertama selesai
+        if (detail.scrollTop >= detail.scrollHeight - detail.clientHeight) {
+            clearInterval(interval);
+        }
+    }, 16);
 }
 </script>
 
 </body>
 
 </html>
+
 
 
 
