@@ -217,28 +217,11 @@ margin: 20px auto;
 		<p class="text-undangan" style="font-size: 0.75rem;">
 		Lani Kusuma & Keluarga </p></h5>
                     </div>
-<button id="scrollBtn"
-style="
-position: fixed;
-bottom: 20px;
-left: 50%;
-transform: translateX(-50%);
-z-index: 99;
-padding: 8px 16px;
-border-radius: 20px;
-border: none;
-background: rgba(212,175,55,0.9);
-color: #5a0a0a;
-font-weight: bold;
-">
-⬇️ Geser ke bawah
-</button>
-
     </div>
 <audio id="bgMusic" loop playsinline>
     <source src="Hanana.mpeg" type="audio/mpeg">
-</audio>
-<script>
+</audio><script>
+/* === BUKA UNDANGAN + MUSIK === */
 function openInvitation() {
     const music = document.getElementById("bgMusic");
     music.play().catch(()=>{});
@@ -250,29 +233,33 @@ function openInvitation() {
     detail.style.opacity = "1";
     detail.style.pointerEvents = "auto";
 }
+
+/* === COUNTDOWN === */
+const targetDate = new Date("Feb 7, 2026 10:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    const cd = document.getElementById("countdown");
+    if (!cd) return;
+
+    if (diff < 0) {
+        cd.innerHTML = "Acara sedang berlangsung";
+        return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    cd.innerHTML = `${d} Hari ${h} Jam ${m} Menit ${s} Detik`;
+}, 1000);
 </script>
-<script>
-document.getElementById("scrollBtn").addEventListener("click", () => {
-    const detail = document.getElementById("page-detail");
-
-    let pos = detail.scrollTop;
-    const max = detail.scrollHeight - detail.clientHeight;
-
-    const interval = setInterval(() => {
-        pos += 2;
-        detail.scrollTop = pos;
-
-        if (pos >= max) {
-            clearInterval(interval);
-        }
-    }, 16); // ~60fps
-});
-</script>
-
-
 </body>
-
 </html>
+
 
 
 
