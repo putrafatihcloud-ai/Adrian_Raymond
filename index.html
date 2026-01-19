@@ -222,69 +222,54 @@ margin: 20px auto;
     <source src="Hanana.mpeg" type="audio/mpeg">
 </audio>
 <script>
-	function openInvitation() {
-    // ✅ MUSIK WAJIB DI SINI (gesture user)
+function openInvitation() {
+    // 🔊 musik HARUS di klik user
     const music = document.getElementById("bgMusic");
-   music.load();
+    music.play().catch(() => {});
 
-    // 🔥 play HARUS langsung setelah klik
-    music.play().then(() => {
-        console.log("Music started");
-    }).catch(err => {
-        console.log("Music blocked:", err);
-    });
-    // tampilkan halaman
     showDetail();
 }
-    function showDetail() {
-    document.getElementById('page-front').style.opacity = "0";
-    document.getElementById('page-front').style.pointerEvents = "none";
 
-    const detail = document.getElementById('page-detail');
+function showDetail() {
+    document.getElementById("page-front").style.opacity = "0";
+    document.getElementById("page-front").style.pointerEvents = "none";
+
+    const detail = document.getElementById("page-detail");
     detail.style.opacity = "1";
     detail.style.pointerEvents = "auto";
 
-    // musik
-    const music = document.getElementById("bgMusic");
-    music.play().catch(()=>{});
-
-    // AUTO SCROLL SETELAH TRANSISI
-    setTimeout(() => {
-        autoScrollDetail();
-    }, 800); // tunggu animasi selesai
+    // auto scroll setelah animasi
+    setTimeout(autoScrollDetail, 800);
 }
 
-    function showFront() {
-        document.getElementById('page-front').style.opacity = "1";
-        document.getElementById('page-front').style.pointerEvents = "auto";
-        document.getElementById('page-detail').style.opacity = "0";
-        document.getElementById('page-detail').style.pointerEvents = "none";
+/* COUNTDOWN */
+const eventDate = new Date("February 07, 2026 10:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = eventDate - now;
+
+    if (diff < 0) {
+        document.getElementById("countdown").innerHTML = "Acara Dimulai";
+        return;
     }
 
-    /* COUNTDOWN LOGIC */
-    const eventDate = new Date("February 07, 2026 10:00:00").getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const diff = eventDate - now;
-        if (diff < 0) {
-            document.getElementById("countdown").innerHTML = "Acara Dimulai";
-            return;
-        }
-        const d = Math.floor(diff / (1000*60*60*24));
-        const h = Math.floor((diff / (1000*60*60)) % 24);
-        const m = Math.floor((diff / (1000*60)) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-        document.getElementById("countdown").innerHTML = `${d} Hari : ${h} Jam : ${m} Menit : ${s} Detik`;
-    }, 1000);
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
 
+    document.getElementById("countdown").innerHTML =
+        `${d} Hari : ${h} Jam : ${m} Menit : ${s} Detik`;
+}, 1000);
+
+/* AUTO SCROLL */
 function autoScrollDetail() {
-   function autoScrollDetail() {
     const detail = document.getElementById("page-detail");
 
     const interval = setInterval(() => {
-        detail.scrollTop += 3;
+        detail.scrollTop += 2;
 
-        if (detail.scrollTop >= detail.scrollHeight - detail.clientHeight) {
+        if (detail.scrollTop + detail.clientHeight >= detail.scrollHeight - 2) {
             clearInterval(interval);
         }
     }, 16);
